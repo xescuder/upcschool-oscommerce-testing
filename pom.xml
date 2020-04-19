@@ -33,6 +33,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.json/com.springsource.org.json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>com.springsource.org.json</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
         <!-- Dependency for test reporting with allure -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
