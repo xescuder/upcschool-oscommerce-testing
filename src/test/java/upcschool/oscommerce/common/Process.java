@@ -21,7 +21,7 @@ public class Process {
 	
 	public Catalog catalog;
 	public ProductSheet productSheet;
-	public ShoppingCart shoppinCart;
+	public ShoppingCart shoppingCart;
 	public SignIn signIn;
 	public DeliveryInformation deliveryInformation;
 	public PaymentInformation paymentInformation;
@@ -33,7 +33,7 @@ public class Process {
 		
 		catalog = new Catalog(driver);
 		productSheet = new ProductSheet(driver);
-		shoppinCart = new ShoppingCart(driver);
+		shoppingCart = new ShoppingCart(driver);
 		signIn = new SignIn(driver);
 		deliveryInformation = new DeliveryInformation(driver);
 		paymentInformation = new PaymentInformation(driver);
@@ -61,8 +61,8 @@ public class Process {
 
 	@Step("Updating quantity to {quantity}")
 	public void updateQuantity(String quantity) {
-		shoppinCart.updateQuantity(wait, quantity);
-		shoppinCart.clickCheckout(wait);
+		shoppingCart.updateQuantity(wait, quantity);
+		shoppingCart.clickCheckout(wait);
 	}
 
 

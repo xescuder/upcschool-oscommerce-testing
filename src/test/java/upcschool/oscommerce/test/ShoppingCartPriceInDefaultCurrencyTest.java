@@ -1,6 +1,7 @@
 package upcschool.oscommerce.test;
 
 
+import io.qameta.allure.Description;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Currency;
@@ -59,18 +60,21 @@ class ShoppingCartPriceInDefaultCurrencyTest {
     }
 
     @Test
+    @Description("Test total price with products with one quantity")
     void testSimplePrice() {
         assertEquals(86, sc1.totalPrice().getAmount());
         //fail("To be implemented in class as demonstration");
     }
 
     @Test
+    @Description("Test total price with products with more than one quantity")
     void testPriceWithQuantities() {
         assertEquals(98, sc2.totalPrice().getAmount());
         //fail("To be implemented in class as demonstration");
     }
 
     @Test
+    @Description("Test total price is recalculated when added new product")
     void addProductItemAndCheckPrice() {
         ProductItem p5 = new ProductItem("Camisa", 2, 2);
         sc1.addProductItem(p5);
@@ -81,6 +85,7 @@ class ShoppingCartPriceInDefaultCurrencyTest {
     }
 
     @Test
+    @Description("Test total price is recalculated when removed a product")
     void removeProductItemAndCheckPrice() {
         sc1.removeProductItem(1);
         sc2.removeProductItem(1);
@@ -90,11 +95,11 @@ class ShoppingCartPriceInDefaultCurrencyTest {
     }
 
     @Test
+    @Description("Test total price in USD currency")
     void checkPriceWithOtherCurrencies() throws Exception {
         //Buscar un assert equals que nos de un margen de error
-        assertEquals(112, sc2.totalPrice(Currency.getInstance("USD")).getAmount(), 10);
+        assertEquals(111, sc2.totalPrice(Currency.getInstance("USD")).getAmount(), 10);
         //fail("To be implemented autonomously");
     }
-
 
 }

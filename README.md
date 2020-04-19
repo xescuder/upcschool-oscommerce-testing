@@ -50,3 +50,40 @@ public void selectProduct(String product) {
 @Severity(SeverityLevel.CRITICAL)
 void test1() {
 ```
+
+
+#### Step 5: Adding screenshots
+
+```java
+package upcschool.oscommerce.test;
+
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+public class ScreenshotUtils {
+    @Attachment(type = "image/png")
+    public static byte[] screenshot(WebDriver driver)/* throws IOException */ {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+}
+```
+
+Now call it from test if you want to screenshot.
+
+```java
+void test1() {
+    ScreenshotUtils.screenshot(driver);
+```
+
+### Step 6: Add failing assertion
+
+Add a failed assertion and check how report changes.
+
+```
+Assertions.assertEquals(false,true);
+```
+
+
+
