@@ -1,5 +1,6 @@
 package upcschool.oscommerce.common;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -41,11 +42,13 @@ public class Process {
 		
 		wait = new WebDriverWait(driver, ESPERA);
 	}
-	
+
 	public void enterSite (String url) {
 		driver.get(url);
 	}
-	
+
+
+	@Step("Selecting product {product}")
 	public void selectProduct(String product) {
 		if(product.equals("Samsung")) {
 			catalog.clickSamsungGalaxyTab(wait);
@@ -54,21 +57,28 @@ public class Process {
 			catalog.clickBeloved(wait);
 		}
 	}
-	
+
+
+	@Step("Updating quantity to {quantity}")
 	public void updateQuantity(String quantity) {
 		shoppinCart.updateQuantity(wait, quantity);
 		shoppinCart.clickCheckout(wait);
 	}
-	
+
+
+	@Step("Adding to cart")
 	public void addToCart() {
 		productSheet.addToCart(wait);
 	}
-	
+
+
+	@Step("Sign in")
 	public void signInProcess() {
 		signIn.enterUserCredentials(wait, "ivanmolmar@outlook.es", "paswordfalso123");
 		deliveryInformation.clickContinue(wait);
 	}
-	
+
+	@Step("Processing order and confirmation")
 	public void processOrderAndConfirm() {
 		paymentInformation.selectPaymentMethod(wait);
 		orderConfirmation.orderPayment(wait);

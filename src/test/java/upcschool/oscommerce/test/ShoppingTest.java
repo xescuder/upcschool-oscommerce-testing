@@ -3,6 +3,9 @@ package upcschool.oscommerce.test;
 import java.io.File;
 import java.io.IOException;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -61,6 +64,8 @@ class ShoppingTest {
 	}
 
 	@Test
+	@Description("Testing Samsung models")
+	@Severity(SeverityLevel.CRITICAL)
 	void test1() {
 		process.enterSite(OSCOMMERCE_URL);
 		process.selectProduct("Samsung");
@@ -71,6 +76,7 @@ class ShoppingTest {
 	}
 	
 	@Test
+	@Description("Testing Beloved models")
 	void test2() {
 		process.enterSite(OSCOMMERCE_URL);
 		process.selectProduct("Beloved");
