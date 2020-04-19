@@ -1,0 +1,10 @@
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/pageobject/Catalog.java
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/pageobject/OrderConfirmation.java
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/pageobject/PaymentInformation.java
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/pageobject/ShoppingCart.java
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/pageobject/DeliveryInformation.java
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/pageobject/OrderProcessed.java
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/pageobject/ProductSheet.java
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/common/Process.java
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/pageobject/SignIn.java
+/Users/escuderx/Projects/personal/upcschool-oscommerce-testing/src/test/java/upcschool/oscommerce/test/ShoppingTest.java
