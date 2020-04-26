@@ -88,10 +88,10 @@
       $error = true;
 
       $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_ERROR);
-    } elseif (tep_validate_email($email_address) == false) {
+    /*} elseif (tep_validate_email($email_address) == false) {
       $error = true;
 
-      $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
+      $messageStack->add('create_account', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);*/
     } else {
       $check_email_query = tep_db_query("select count(*) as total from " . TABLE_CUSTOMERS . " where customers_email_address = '" . tep_db_input($email_address) . "'");
       $check_email = tep_db_fetch_array($check_email_query);
@@ -108,11 +108,11 @@
       $messageStack->add('create_account', ENTRY_STREET_ADDRESS_ERROR);
     }
 
-    if (strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
+    /*if (strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
       $error = true;
 
       $messageStack->add('create_account', ENTRY_POST_CODE_ERROR);
-    }
+    }*/
 
     if (strlen($city) < ENTRY_CITY_MIN_LENGTH) {
       $error = true;
@@ -161,11 +161,11 @@
       $error = true;
 
       $messageStack->add('create_account', ENTRY_PASSWORD_ERROR);
-    } elseif ($password != $confirmation) {
+    } /*elseif ($password != $confirmation) {
       $error = true;
 
       $messageStack->add('create_account', ENTRY_PASSWORD_ERROR_NOT_MATCHING);
-    }
+    }*/
 
     if ($error == false) {
       $sql_data_array = array('customers_firstname' => $firstname,
@@ -176,8 +176,10 @@
                               'customers_newsletter' => $newsletter,
                               'customers_password' => tep_encrypt_password($password));
 
-      if (ACCOUNT_GENDER == 'true') $sql_data_array['customers_gender'] = $gender;
-      if (ACCOUNT_DOB == 'true') $sql_data_array['customers_dob'] = tep_date_raw($dob);
+      //if (ACCOUNT_GENDER == 'true') $sql_data_array['customers_gender'] = $gender;
+      if (ACCOUNT_GENDER == 'true') $sql_data_array['customers_gender'] = 'f';
+      //if (ACCOUNT_DOB == 'true') $sql_data_array['customers_dob'] = tep_date_raw($dob);
+      if (ACCOUNT_DOB == 'true') $sql_data_array['customers_dob'] = date('m/d/Y');
 
       tep_db_perform(TABLE_CUSTOMERS, $sql_data_array);
 

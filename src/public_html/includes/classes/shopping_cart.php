@@ -189,14 +189,14 @@
 
       reset($this->contents);
       while (list($key,) = each($this->contents)) {
-        if ($this->contents[$key]['qty'] < 1) {
+        /*if ($this->contents[$key]['qty'] < 1) {
           unset($this->contents[$key]);
 // remove from database
           if (tep_session_is_registered('customer_id')) {
             tep_db_query("delete from " . TABLE_CUSTOMERS_BASKET . " where customers_id = '" . (int)$customer_id . "' and products_id = '" . tep_db_input($key) . "'");
             tep_db_query("delete from " . TABLE_CUSTOMERS_BASKET_ATTRIBUTES . " where customers_id = '" . (int)$customer_id . "' and products_id = '" . tep_db_input($key) . "'");
           }
-        }
+        }*/
       }
     }
 

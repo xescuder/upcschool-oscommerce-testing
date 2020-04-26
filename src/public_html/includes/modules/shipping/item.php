@@ -117,5 +117,4 @@
 
       return $number_of_items;
     }
-  }
 ?>
