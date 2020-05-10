@@ -56,15 +56,102 @@
   
 
 - Shopping cart box (/public_html/includes/modules/boxes/bm_shopping_cart.php)
-  * Total price not computed correctly with all decimals
+  * Total price is round!
    src/public_html/includes/classes/shopping_cart.php, 
    $this->total += $currencies->calculate_price($products_price, $products_tax, $qty);
+   
    
 - Product listing (/public_html/includes/modules/product_listing.php)
  * Sort product by name (DVD Movies > Action)
        src/public_html/includes/functions/general.php
        Line 896: $sort_prefix = '<a href="' . tep_href_link($PHP_SELF, tep_get_all_get_params(array('page', 'info', 'sort')) . 'page=1&sort=' . $colnum . ($sortby == $colnum . 'a' ? 'd' : 'a')) . '" title="' . tep_output_string(TEXT_SORT_PRODUCTS . ($sortby == $colnum . 'd' || substr($sortby, 0, 1) != $colnum ? TEXT_ASCENDINGLY : TEXT_DESCENDINGLY) . TEXT_BY . $heading) . '" class="productListing-heading">' ;
+ 
+ 
+ 
+- Login.
+     1. Security flaw. Error in username, error in password separated
+     
+     * Added two error labels for username or password:
+     (src/public_html/includes/languages/english/modules/content/login/cm_login_form.php)
+     
+     define('MODULE_CONTENT_LOGIN_TEXT_USERNAME_ERROR', 'Error: No match for E-Mail Address.');
+     define('MODULE_CONTENT_LOGIN_TEXT_PASSWORD_ERROR', 'Error: No match for Password.');
+        
+     * Check error in username and check error in password:
+      
+     ```src/public_html/includes/modules/content/login/cm_login_form.php```
+    
+     ```
+     if (!tep_db_num_rows($customer_query)) {
+              $messageStack->add('login', MODULE_CONTENT_LOGIN_TEXT_USERNAME_ERROR);
+              $error = true;
+            } else {
+              $customer = tep_db_fetch_array($customer_query);
+              if (!tep_validate_password($password, $customer['customers_password'])) {
+                $error = true;
+                $messageStack->add('login', MODULE_CONTENT_LOGIN_TEXT_PASSWORD_ERROR);
+              } else {
+                ...
+              }
+            }
+          }
+    
+          /*if ($error == true) {
+            $messageStack->add('login', MODULE_CONTENT_LOGIN_TEXT_LOGIN_ERROR);
+          }*/
+     ```
+  
+- Checkout
+   * /public_html/checkout_confirmation.php. Comments about order not added
    
+     Billing address is the same as delivery.
+     
+     211:  <td><?php echo tep_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<br />'); ?></td>
+   
+    * Gender only Female, Male not possible
+    
+    
+- Quick find
 
+  * It forces to search in exact case
+  src/public_html/advanced_search_result.php
+  
+  Added binary at like to be case sensitive:
+  
+  $where_str .= "(pd.products_name like binary '%" . tep_db_input($keyword) . "%' or p.products_model like '%" . tep_db_input($keyword) . "%' or m.manufacturers_name like '%" . tep_db_input($keyword) . "%'";
+  
+  
+  * Advanced search. Not working from price to price
 
+   
+  if (DISPLAY_PRICE_WITH_TAX == 'true') {
+    if ($pfrom > 0) $where_str .= " and (IF(s.status, s.specials_new_products_price, p.products_price) * if(gz.geo_zone_id is null, 1, 1 + (tr.tax_rate / 100) ) >= " . (double)$pfrom . ")";
+    if ($pto > 0) $where_str .= " and (IF(s.status, s.specials_new_products_price, p.products_price) * if(gz.geo_zone_id is null, 1, 1 + (tr.tax_rate / 100) ) >= " . (double)$pto . ")";
+  } else {
+    if ($pfrom > 0) $where_str .= " and (IF(s.status, s.specials_new_products_price, p.products_price) >= " . (double)$pfrom . ")";
+    if ($pto > 0) $where_str .= " and (IF(s.status, s.specials_new_products_price, p.products_price) >= " . (double)$pto . ")";
+  }
 
+- Address books. 
+
+ * Maximum exceeded but I can add more.
+
+  Changed Table configuration, field MAX_ADDRESS_BOOK_ENTRIES changed to 2, for ease testing purposes
+  Changed src/public_html/address_book.php, removed condition
+    
+  <?php
+    if (tep_count_customer_address_book_entries() < MAX_ADDRESS_BOOK_ENTRIES) {
+  ?>
+  
+      <span class="buttonAction"><?php echo tep_draw_button(IMAGE_BUTTON_ADD_ADDRESS, 'home', tep_href_link(FILENAME_ADDRESS_BOOK_PROCESS, '', 'SSL'), 'primary'); ?></span>
+  
+  <?php
+    }
+  ?>
+  
+- Errors coming from database
+   * categories: printers category has incorrect image
+   * products_images: die hard has no image at product details
+   * manufactures_info: incorrect urls for microsoft, warner (not url shown), fox, canon and infogrames
+   
+   
