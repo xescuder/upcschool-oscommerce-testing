@@ -172,7 +172,7 @@
           $listing_sql .= " order by p.products_model " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";
           break;
         case 'PRODUCT_LIST_NAME':
-          $listing_sql .= " order by pd.products_name " . ($sort_order == 'd' ? 'desc' : 'desc');
+          $listing_sql .= " order by pd.products_name " . ($sort_order == 'd' ? 'desc' : '');
           break;
         case 'PRODUCT_LIST_MANUFACTURER':
           $listing_sql .= " order by m.manufacturers_name " . ($sort_order == 'd' ? 'desc' : '') . ", pd.products_name";

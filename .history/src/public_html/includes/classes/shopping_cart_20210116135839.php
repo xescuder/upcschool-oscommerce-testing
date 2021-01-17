@@ -335,11 +335,11 @@
           $prid = $products['products_id'];
           $products_price = $products['products_price'];
 
-          /*$specials_query = tep_db_query("select specials_new_products_price from " . TABLE_SPECIALS . " where products_id = '" . (int)$prid . "' and status = '1'");
+          $specials_query = tep_db_query("select specials_new_products_price from " . TABLE_SPECIALS . " where products_id = '" . (int)$prid . "' and status = '1'");
           if (tep_db_num_rows($specials_query)) {
             $specials = tep_db_fetch_array($specials_query);
             $products_price = $specials['specials_new_products_price'];
-          }*/
+          }
 
           $products_array[] = array('id' => $products_id,
                                     'name' => $products['products_name'],
@@ -360,7 +360,7 @@
     function show_total() {
       $this->calculate();
 
-      return ceil($this->total);
+      return $this->total;
     }
 
     function show_weight() {

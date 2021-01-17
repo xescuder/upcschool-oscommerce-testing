@@ -51,7 +51,7 @@ define('TITLE', STORE_NAME);
 
 // header text in includes/header.php
 define('HEADER_TITLE_CREATE_ACCOUNT', 'Crear una cuenta');
-define('HEADER_TITLE_MY_ACCOUNT', 'Mi cuenta');
+define('HEADER_TITLE_MY_ACCOUNT', 'My Account');
 define('HEADER_TITLE_CART_CONTENTS', 'Cart Contentd');
 define('HEADER_TITLE_CHECKOUT', 'Checkout');
 define('HEADER_TITLE_TOP', 'Top');
@@ -64,7 +64,7 @@ define('FOOTER_TEXT_REQUESTS_SINCE', 'requests since');
 
 // text for gender
 define('MALE', 'Male');
-define('FEMALE', 'Femenino');
+define('FEMALE', 'Female');
 define('MALE_ADDRESS', 'Mr.');
 define('FEMALE_ADDRESS', 'Ms.');
 
@@ -165,7 +165,7 @@ define('FORM_REQUIRED_INFORMATION', '* Required information');
 
 // constants for use in tep_prev_next_display function
 define('TEXT_RESULT_PAGE', 'Result Pages:');
-define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>1</strong> products)');
+define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> products)');
 define('TEXT_DISPLAY_NUMBER_OF_ORDERS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> orders)');
 define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> reviews)');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS_NEW', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> new products)');
